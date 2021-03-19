@@ -8,70 +8,178 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <script src="bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {'packages':['line']});
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Дата');
-            data.addColumn('number', 'Г. Григорий');
-            data.addColumn('number', 'Г. Никита');
-            data.addColumn('number', 'Л. Данил'); 
-            data.addColumn('number', 'М. Максим');
-            data.addColumn('number', 'П. Юрий');
-            data.addColumn('number', 'Р. Никита');
-            data.addColumn('number', 'С. Артём');
-            data.addColumn('number', 'С. Даниил');
-            data.addColumn('number', 'С. Максим');
-            data.addColumn('number', 'Ф. Семён');
-
-            data.addRows([
-                ['Начальный рейтинг',   1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000 ],
-                ['12.03.2021',          1000, 1910, 1430, 1050, 1580, 1310, 1050, 1100, 2050, 2660 ],
-            ]);
-
-            var options = {
-                width: 900,
-                height: 500,
-            };
-
-            var chart = new google.charts.Line(document.getElementById('p1-rating'));
-
-            chart.draw(data, google.charts.Line.convertOptions(options));
-        }
-    </script>
 </head>
-<body style="min-width: 1000px">
+<body style="min-width: 1100px">
     <p class="text-center fs-1 pt-5 pb-5">Рейтинг групп и студентов IT-Cube</p>
-    <div class="d-flex justify-content-center pb-5">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-            <li class="nav-item" role="presentation"><button class="nav-link active" id="pills-p1-tab" data-bs-toggle="pill" data-bs-target="#pills-p1" type="button" role="tab" aria-controls="pills-p1" aria-selected="true" style="min-width: 100px">P1</button></li>
-            <li class="nav-item" role="presentation"><button class="nav-link" id="pills-p4-tab" data-bs-toggle="pill" data-bs-target="#pills-p4" type="button" role="tab" aria-controls="pills-p4" aria-selected="false" style="min-width: 100px">P4</button></li>
-            <li class="nav-item" role="presentation"><button class="nav-link" id="pills-p5-tab" data-bs-toggle="pill" data-bs-target="#pills-p5" type="button" role="tab" aria-controls="pills-p5" aria-selected="false" style="min-width: 100px">P5</button></li>
-            <li class="nav-item" role="presentation"><button class="nav-link" id="pills-m1-tab" data-bs-toggle="pill" data-bs-target="#pills-m1" type="button" role="tab" aria-controls="pills-m1" aria-selected="false" style="min-width: 100px">M1</button></li>
-        </ul>
+    <div class="d-flex justify-content-center py-5">
+        <div id="group-rating"></div>
     </div>
-    <div class="d-flex justify-content-center">
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-p1" role="tabpanel" aria-labelledby="pills-p1">
-                <div id="p1-rating"></div>
-                <p class="text-center fs-2 pt-5">Общий групповой зачёт: <span class="text-success">15140</span></p>
-                <p class="text-center fs-2 pt-1 pb-5">За <span class="text-success">12.03.2021</span> командой было заработано <span class="text-success">5140</span> баллов</p>
-            </div>
-            <div class="tab-pane fade" id="pills-p4" role="tabpanel" aria-labelledby="pills-p4">
-                <p class="text-muted fs-2">Нет данных</p>
-            </div>
-            <div class="tab-pane fade" id="pills-p5" role="tabpanel" aria-labelledby="pills-p5">
-                <p class="text-muted fs-2">Нет данных</p>
-            </div>
-            <div class="tab-pane fade" id="pills-m1" role="tabpanel" aria-labelledby="pills-m1">
-                <p class="text-muted fs-2">Нет данных</p>
-            </div>
-        </div>
+    <div class="d-flex justify-content-center py-5">
+        <div id="common-rating"></div>
     </div>
-
-    
+    <div class="d-flex justify-content-center py-5">
+        <div id="p1-rating"></div>
+    </div>
+    <div class="d-flex justify-content-center py-5">
+        <div id="p5-rating"></div>
+    </div>
 </body>
 </html>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', ' ');
+        data.addColumn('number', 'P1');
+        data.addColumn('number', 'P5');
+
+        data.addRows([
+            ['', 11000, 11000],
+            ['', 16140, 18200],
+            ['', 21140, 26650]
+        ]);
+
+        var options = {
+            width: 1000,
+            height: 500,
+            title: 'Групповой рейтинг'
+        };
+
+        var chart = new google.charts.Line(document.getElementById('group-rating'));
+        chart.chartArea = {left:20,top:0,width:'10%',height:'20%'}
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', ' ');
+        data.addColumn('number', 'А. Ангелина (P5)');
+        data.addColumn('number', 'Б. Константин (P5)');
+        data.addColumn('number', 'Г. Арсений (P5)');
+        data.addColumn('number', 'Г. Григорий (P1)');
+        data.addColumn('number', 'Г. Никита (P1)');
+        data.addColumn('number', 'Д. Тимофей (P5)');
+        data.addColumn('number', 'К. Елена (P5)');
+        data.addColumn('number', 'К. Максим (P5)');
+        data.addColumn('number', 'Л. Данил (P1)');
+        data.addColumn('number', 'М. Максим (P1)');
+        data.addColumn('number', 'М. Максим (P5)');
+        data.addColumn('number', 'Н. Виктор (P1)');
+        data.addColumn('number', 'Н. Никита (P5)');
+        data.addColumn('number', 'П. Юрий (P1)');
+        data.addColumn('number', 'П. Артём (P5)');
+        data.addColumn('number', 'Р. Никита (P1)');
+        data.addColumn('number', 'С. Артём (P1)');
+        data.addColumn('number', 'С. Алексей (P5)');
+        data.addColumn('number', 'С. Даниил (P1)');
+        data.addColumn('number', 'С. Максим (P1)');
+        data.addColumn('number', 'С. Данила (P5)');
+        data.addColumn('number', 'Ф. Семён (P1)');
+
+        data.addRows([
+        ['', 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+        ['', 1650, 1150, 1600, 1000, 1910, 1200, 1750, 3300, 1430, 1050, 1700, 1000, 2100, 1580, 1150, 1310, 1050, 1000, 1100, 2050, 1600, 2660],
+        ['', 2900, 1450, 2800, 1600, 2310, 1600, 3150, 3800, 1280, 900, 3100, 850, 2600, 2830, 1450, 1610, 900, 1000, 950, 3300, 2800, 4610]
+        ]);
+
+        var options = {
+            width: 1000,
+            height: 900,
+            title: 'Групповой рейтинг'
+        };
+
+        var chart = new google.charts.Line(document.getElementById('common-rating'));
+        chart.chartArea = {left:20,top:0,width:'10%',height:'20%'}
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', ' ');
+        data.addColumn('number', 'Г. Григорий (P1)');
+        data.addColumn('number', 'Г. Никита (P1)');
+        data.addColumn('number', 'Л. Данил (P1)');
+        data.addColumn('number', 'М. Максим (P1)');
+        data.addColumn('number', 'Н. Виктор (P1)');
+        data.addColumn('number', 'П. Юрий (P1)');
+        data.addColumn('number', 'Р. Никита (P1)');
+        data.addColumn('number', 'С. Артём (P1)');
+        data.addColumn('number', 'С. Даниил (P1)');
+        data.addColumn('number', 'С. Максим (P1)');
+        data.addColumn('number', 'Ф. Семён (P1)');
+
+        data.addRows([
+            ['', 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+            ['', 1000, 1910, 1430, 1050, 1000, 1580, 1310, 1050, 1100, 2050, 2660],
+            ['', 1600, 2310, 1280, 900, 850, 2830, 1610, 900, 950, 3300, 4610]
+        ]);
+
+        var options = {
+            width: 1000,
+            height: 500,
+            title: 'Группа P1'
+        };
+
+        var chart = new google.charts.Line(document.getElementById('p1-rating'));
+        chart.chartArea = {left:20,top:0,width:'10%',height:'20%'}
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+</script>
+
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '');
+        data.addColumn('number', 'А. Ангелина (P5)');
+        data.addColumn('number', 'Б. Константин (P5)');
+        data.addColumn('number', 'Г. Арсений (P5)');
+        data.addColumn('number', 'Д. Тимофей (P5)');
+        data.addColumn('number', 'К. Елена (P5)');
+        data.addColumn('number', 'К. Максим (P5)');
+        data.addColumn('number', 'М. Максим (P5)');
+        data.addColumn('number', 'Н. Никита (P5)');
+        data.addColumn('number', 'П. Артём (P5)');
+        data.addColumn('number', 'С. Алексей (P5)');
+        data.addColumn('number', 'С. Данила (P5)');
+
+        data.addRows([
+            ['', 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000],
+            ['', 1650, 1150, 1600, 1200, 1750, 3300, 1700, 2100, 1150, 1000, 1600],
+            ['', 2900, 1450, 2800, 1600, 3150, 3800, 3100, 2600, 1450, 1000, 2800],
+        ]);
+
+        var options = {
+            width: 1000,
+            height: 500,
+            title: 'Группа P5'
+        };
+
+        var chart = new google.charts.Line(document.getElementById('p5-rating'));
+        chart.chartArea = {left:20,top:0,width:'10%',height:'20%'}
+
+        chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+</script>
